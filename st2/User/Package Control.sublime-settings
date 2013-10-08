@@ -1,0 +1,11 @@
+{
+	"installed_packages":
+	[
+		"Djaneiro",
+		"Jedi - Python autocompletion",
+		"Package Control",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"Tag"
+	]
+}

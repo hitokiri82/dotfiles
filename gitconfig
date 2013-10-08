@@ -1,0 +1,14 @@
+[user]
+	name = Francisco C
+	email = francisco.caraballo@gmail.com
+[branch]
+	autosetuprebase = always
+[alias]
+	diff = diff --color
+	co = checkout
+	ss = status -sb
+	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5
+[editor]
+	editor = vim
+[push]
+	default = current
