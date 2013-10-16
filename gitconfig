@@ -4,9 +4,10 @@
 [branch]
 	autosetuprebase = always
 [alias]
-	diff = diff --color
 	co = checkout
 	ss = status -sb
 	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5
 [push]
 	default = current
+[color]
+	diff = always
