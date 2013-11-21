@@ -11,3 +11,6 @@
 	default = current
 [color]
 	diff = always
+    ui = true
+[core]
+    excludesfile = ~/.gitglobal_ignore
