@@ -12,6 +12,9 @@
 *.la
 *.a
 
+# Compiled Python files
+*.pyc
+
 #CMake Generated Files
 CMakeCache.txt
 CMakeFiles
@@ -20,3 +23,10 @@ cmake_install.cmake
 install_manifest.txt
 
 *~
+
+*.sublime-project
+*.sublime-workspace
+
+notedump.txt
+
+.idea
