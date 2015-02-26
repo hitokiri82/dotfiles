@@ -1,0 +1,14 @@
+# Catchall Configuration
+Host *
+	 # Keep connection alive every 30 seconds 120 times
+	 ServerAliveInterval 30
+	 # Default Value accept 3 failures to keep alive
+	 ServerAliveCountMax 3
+
+	 # Keep connections open 4h to allow fast reconnects
+	 ControlMaster auto
+	 ControlPath /tmp/ssh_mux_%h_%p_%r
+	 ControlPersist 4h
+
+	 # Disable GSSAPI auth
+	 GSSAPIAuthentication no
