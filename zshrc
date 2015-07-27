@@ -56,3 +56,5 @@ export WORKON_HOME=~/virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=~/virtualenvs
 sshcyb() { ssh '130.117.110.'$* }
+sshtunnel() { ssh -L $2':'$1':'$2 $1 }
+sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
