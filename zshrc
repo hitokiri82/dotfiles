@@ -40,7 +40,7 @@ ZSH_THEME="dstufft"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv virtualenvwrapper pip django zsh-syntax-highlighting command-not-found fabric)
+plugins=(git virtualenv virtualenvwrapper pip django zsh-syntax-highlighting command-not-found fabric docker) 
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/history-substring-search/history-substring-search.zsh
@@ -58,3 +58,7 @@ export PIP_VIRTUALENV_BASE=~/virtualenvs
 sshcyb() { ssh '130.117.110.'$* }
 sshtunnel() { ssh -L $2':'$1':'$2 $1 }
 sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fcaraballo/.sdkman"
+[[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
