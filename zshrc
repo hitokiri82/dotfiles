@@ -62,6 +62,9 @@ sshcyb() { ssh '130.117.110.'$* }
 sshtunnel() { ssh -L $2':'$1':'$2 $1 }
 sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
 
+alias wireshark='LIBOVERLAY_SCROLLBAR=0 wireshark'
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fcaraballo/.sdkman"
 [[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
+
