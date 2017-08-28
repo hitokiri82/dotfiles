@@ -43,7 +43,7 @@ DEFAULT_USER="fcaraballo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv virtualenvwrapper pip django zsh-syntax-highlighting command-not-found fabric docker) 
+plugins=(git virtualenv virtualenvwrapper pip django zsh-syntax-highlighting command-not-found fabric docker kubectl) 
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/history-substring-search/history-substring-search.zsh
@@ -65,6 +65,9 @@ sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
 alias wireshark='LIBOVERLAY_SCROLLBAR=0 wireshark'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/fcaraballo/.sdkman"
-[[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="/home/fcaraballo/.sdkman"
+#[[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
 
+
+export NVM_DIR="/home/fcaraballo/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
