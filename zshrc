@@ -10,6 +10,10 @@ ZSH_THEME="agnoster"
 
 DEFAULT_USER="fcaraballo"
 
+export WORKON_HOME=~/virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=~/virtualenv
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -55,9 +59,6 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # Customize to your needs...
 export PATH=$PATH:/home/fcaraballo/bin:/home/fcaraballo/local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-export WORKON_HOME=~/virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=~/virtualenvs
 sshcyb() { ssh '130.117.110.'$* }
 sshtunnel() { ssh -L $2':'$1':'$2 $1 }
 sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
