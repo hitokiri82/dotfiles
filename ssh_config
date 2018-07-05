@@ -13,6 +13,12 @@ Host *
 	 # Disable GSSAPI auth
 	 GSSAPIAuthentication no
 
-#Host 130.117.110.80
-#         ForwardAgent yes
+Host 130.117.110.80
+         ForwardAgent yes
+Host 130.117.110.84
+         ForwardAgent yes
+Host 130.117.110.41
+         ForwardAgent yes
+Host 130.117.110.42
+         ForwardAgent yes
 

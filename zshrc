@@ -57,18 +57,21 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Customize to your needs...
-export PATH=$PATH:/home/fcaraballo/bin:/home/fcaraballo/local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$PATH:/home/fcaraballo/bin:/home/fcaraballo/local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/fcaraballo/.local/bin
 
 sshcyb() { ssh '130.117.110.'$* }
 sshtunnel() { ssh -L $2':'$1':'$2 $1 }
 sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
 
 alias wireshark='LIBOVERLAY_SCROLLBAR=0 wireshark'
-
+alias ls='ls -alh'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="/home/fcaraballo/.sdkman"
 #[[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
 
-
 export NVM_DIR="/home/fcaraballo/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export ANDROID_HOME=/home/fcaraballo/android_sdk
+
+export IBUS_ENABLE_SYNC_MODE=1
