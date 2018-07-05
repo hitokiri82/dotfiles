@@ -21,4 +21,6 @@ Host 130.117.110.41
          ForwardAgent yes
 Host 130.117.110.42
          ForwardAgent yes
+Host ast-aws
+         HostName 34.254.213.84
 
