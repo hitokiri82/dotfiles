@@ -63,6 +63,8 @@ sshcyb() { ssh '130.117.110.'$* }
 sshtunnel() { ssh -L $2':'$1':'$2 $1 }
 sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
 
+loadenv() { export $(cat $1 | xargs) }
+
 alias wireshark='LIBOVERLAY_SCROLLBAR=0 wireshark'
 alias ls='ls -alh'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
