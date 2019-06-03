@@ -71,8 +71,11 @@ alias ls='ls -alh'
 #export SDKMAN_DIR="/home/fcaraballo/.sdkman"
 #[[ -s "/home/fcaraballo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fcaraballo/.sdkman/bin/sdkman-init.sh"
 
-export NVM_DIR="/home/fcaraballo/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 export ANDROID_HOME=/home/fcaraballo/android_sdk
 
