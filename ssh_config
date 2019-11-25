@@ -23,4 +23,18 @@ Host 130.117.110.42
          ForwardAgent yes
 Host ast-aws
          HostName 34.254.213.84
+Host gcp-alpha
+         HostName 35.205.242.167 
+         User talke-gcp
+         IdentityFile /home/fcaraballo/.ssh/talke-gcp
+
+Host gcp-web
+         HostName 35.195.16.110 
+         User talke-gcp
+         IdentityFile /home/fcaraballo/.ssh/talke-gcp
+
+Host gcp-fs
+         HostName 34.77.197.168
+         User talke-gcp
+         IdentityFile /home/fcaraballo/.ssh/talke-gcp
 
