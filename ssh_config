@@ -38,3 +38,18 @@ Host gcp-fs
          User talke-gcp
          IdentityFile /home/fcaraballo/.ssh/talke-gcp
 
+#Host s1.voip10.com
+#         HostName 51.77.129.58
+#         User root
+#         IdentityFile /home/fcaraballo/.ssh/id_ovh_cyberfonica
+
+#Host s2.voip10.com
+#         HostName 51.77.129.61
+#         User root
+#         IdentityFile /home/fcaraballo/.ssh/id_ovh_cyberfonica
+
+#Host monitor.voip10.com
+#         HostName 51.75.131.25
+#         User root
+#         IdentityFile /home/fcaraballo/.ssh/id_ovh_cyberfonica
+
