@@ -66,6 +66,8 @@ sshcybtunnel() { ssh -L $2':130.117.110.'$1':'$2 '130.117.110.'$1 }
 
 sshgcp() { gcloud beta compute ssh --zone "europe-west1-b" --project "cyberfonica-prod" "$1" }
 
+alias talkelog='adb logcat --pid=`adb shell pidof -s com.talkeapp.app`'
+
 loadenv() { export $(cat $1 | xargs) }
 
 alias wireshark='LIBOVERLAY_SCROLLBAR=0 wireshark'
