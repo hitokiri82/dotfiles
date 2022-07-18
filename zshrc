@@ -10,9 +10,11 @@ ZSH_THEME="agnoster"
 
 DEFAULT_USER="fcaraballo"
 
+export LESS=-FRX
+
 export WORKON_HOME=~/virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=~/virtualenv
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+#export PIP_VIRTUALENV_BASE=~/virtualenv
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,7 +50,7 @@ export PIP_VIRTUALENV_BASE=~/virtualenv
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git virtualenv virtualenvwrapper pip django command-not-found fabric docker kubectl zsh-syntax-highlighting) 
-plugins=(git virtualenv virtualenvwrapper pip django command-not-found fabric docker kubectl gcloud) 
+plugins=(git virtualenv virtualenvwrapper pip command-not-found fabric docker kubectl gcloud) 
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/history-substring-search/history-substring-search.zsh
