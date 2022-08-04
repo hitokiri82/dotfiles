@@ -10,7 +10,7 @@ ZSH_THEME="agnoster"
 
 DEFAULT_USER="fcaraballo"
 
-export LESS=-FRX
+export LESS=-FR
 
 export WORKON_HOME=~/virtualenvs
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
