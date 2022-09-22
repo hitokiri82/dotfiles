@@ -18,7 +18,7 @@
 #CMake Generated Files
 CMakeCache.txt
 CMakeFiles
-Makefile
+# Makefile # weird! why was this being ignored?
 cmake_install.cmake
 install_manifest.txt
 
