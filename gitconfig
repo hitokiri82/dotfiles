@@ -17,3 +17,6 @@
 	editor = vim
 [fetch]
 	prune = true
+
+[includeIf "gitdir:~/projects/sapiens/"]
+    path = ~/.gitconfig-sapiens
