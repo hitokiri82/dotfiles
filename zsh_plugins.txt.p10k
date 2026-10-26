@@ -1,0 +1,8 @@
+# antidote plugin list — read by `antidote load` in ~/.zshrc
+# antidote compiles this into ~/.zsh_plugins.zsh and only rebuilds it when this file changes.
+
+# Prompt (async git status via gitstatusd)
+romkatv/powerlevel10k
+
+# Up/Down arrow searches history for what you've typed so far
+zsh-users/zsh-history-substring-search

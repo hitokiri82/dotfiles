@@ -1,0 +1,149 @@
+# ~/.zshrc — no Oh My Zsh; antidote + powerlevel10k
+
+# ---------------------------------------------------------------------------
+# PATH first, so everything below (direnv, uv, ty...) is findable
+# ---------------------------------------------------------------------------
+: ${HOMEBREW_PREFIX:=/opt/homebrew}   # avoids spawning `brew --prefix` on every shell start
+typeset -U path fpath                  # dedupe PATH/fpath entries
+path=(
+  $HOME/.local/bin
+  $HOMEBREW_PREFIX/opt/libpq/bin       # psql, pg_dump, ... without the full server
+  $path
+)
+
+# direnv must run before instant prompt, otherwise its output trips p10k's warning
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+
+# ---------------------------------------------------------------------------
+# p10k instant prompt — keep near the top. Nothing above may need console input.
+# ---------------------------------------------------------------------------
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+
+# ---------------------------------------------------------------------------
+# Environment
+# ---------------------------------------------------------------------------
+export LESS=-FR
+export CLICOLOR=1                      # colored `ls` on macOS (OMZ used to do this)
+zmodload zsh/terminfo
+
+# ---------------------------------------------------------------------------
+# History (equivalent to Oh My Zsh's defaults)
+# ---------------------------------------------------------------------------
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=10000
+setopt extended_history hist_expire_dups_first hist_ignore_dups \
+       hist_ignore_space hist_verify share_history
+
+# ---------------------------------------------------------------------------
+# General options
+# ---------------------------------------------------------------------------
+setopt auto_cd auto_pushd pushd_ignore_dups pushd_minus
+setopt interactive_comments            # allow `# comments` at the prompt
+setopt complete_in_word always_to_end auto_menu
+unsetopt menu_complete flow_control
+
+# ---------------------------------------------------------------------------
+# Completion
+# ---------------------------------------------------------------------------
+# Cache generated completions instead of running `uv/uvx/ty generate-...` each startup.
+# They regenerate automatically when the binary is newer than the cached file.
+_zcomp_cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions
+[[ -d $_zcomp_cache ]] || mkdir -p $_zcomp_cache
+_zcomp_changed=0
+_zcache_completion() {                 # usage: _zcache_completion <binary> <command...>
+  local bin=${commands[$1]} out=$_zcomp_cache/_$1
+  [[ -n $bin ]] || return 0
+  if [[ ! -s $out || $bin -nt $out ]]; then
+    "${@:2}" >| $out 2>/dev/null && _zcomp_changed=1
+  fi
+}
+_zcache_completion uv  uv  generate-shell-completion zsh
+_zcache_completion uvx uvx --generate-shell-completion zsh
+_zcache_completion ty  ty  generate-shell-completion zsh
+unfunction _zcache_completion
+
+fpath=(
+  $_zcomp_cache
+  $HOME/.docker/completions
+  $HOMEBREW_PREFIX/share/zsh/site-functions
+  $fpath
+)
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'  # case-insensitive
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
+
+# compinit once (the old file ran it twice: OMZ + Docker's block).
+# Full security check at most once a day; otherwise use the cached dump.
+autoload -Uz compinit
+() {
+  setopt local_options extended_glob
+  local dump=${ZDOTDIR:-$HOME}/.zcompdump
+  (( _zcomp_changed )) && rm -f $dump
+  if [[ -n $dump(#qN.mh+24) || ! -s $dump ]]; then
+    compinit -d $dump
+  else
+    compinit -C -d $dump
+  fi
+}
+unset _zcomp_changed _zcomp_cache
+
+# bash-style completions (aws)
+autoload -Uz bashcompinit && bashcompinit
+(( ${+commands[aws_completer]} )) && complete -C aws_completer aws
+
+[[ -r ~/.local/share/zeus/completion.zsh ]] && source ~/.local/share/zeus/completion.zsh
+
+# ---------------------------------------------------------------------------
+# Plugins (antidote: `brew install antidote`; list lives in ~/.zsh_plugins.txt)
+# ---------------------------------------------------------------------------
+source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
+antidote load
+
+# ---------------------------------------------------------------------------
+# Key bindings
+# ---------------------------------------------------------------------------
+bindkey -e
+bindkey '^[[A' history-substring-search-up       # Up
+bindkey '^[OA' history-substring-search-up
+bindkey '^[[B' history-substring-search-down     # Down
+bindkey '^[OB' history-substring-search-down
+bindkey '^[[H' beginning-of-line                 # Home
+bindkey '^[[F' end-of-line                       # End
+bindkey '^[[3~' delete-char                      # Delete
+bindkey '^[[1;3C' forward-word                   # Alt/Option-Right
+bindkey '^[[1;3D' backward-word                  # Alt/Option-Left
+bindkey '^[[1;5C' forward-word                   # Ctrl-Right
+bindkey '^[[1;5D' backward-word                  # Ctrl-Left
+bindkey ' ' magic-space                          # expand !! etc. on space
+autoload -Uz edit-command-line && zle -N edit-command-line
+bindkey '^X^E' edit-command-line                 # open current line in $EDITOR
+
+# ---------------------------------------------------------------------------
+# Aliases & functions
+# ---------------------------------------------------------------------------
+alias ls='ls -alh'
+alias grep='grep --color=auto'
+alias ...='cd ../..'
+alias -- -='cd -'
+alias gitk='gitk -b'
+alias gitg='gitk -b'
+
+read_env() {
+  export $(xargs <$1)
+}
+
+# iTerm2 integration only when actually in iTerm2 (Ghostty injects its own)
+[[ $TERM_PROGRAM == iTerm.app && -e ~/.iterm2_shell_integration.zsh ]] && source ~/.iterm2_shell_integration.zsh
+
+# ---------------------------------------------------------------------------
+# Prompt config — generated by `p10k configure`
+# ---------------------------------------------------------------------------
+[[ -r ~/.p10k.zsh ]] && source ~/.p10k.zsh
