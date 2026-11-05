@@ -32,6 +32,7 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # os_icon               # os identifier
+    zeus_env                # ZEUS_ENV inside a `zeus env shell` session
     aws
     dir                     # current directory
     vcs                     # git status
@@ -1792,6 +1793,16 @@
     prompt_example
   }
 
+  # The zeus env name, shown only when ZEUS_ENV is set (inside `zeus env shell`).
+  # -c and -e evaluate the variable when the prompt is drawn, so the same call
+  # also works for instant prompt.
+  function prompt_zeus_env() {
+    p10k segment -b 5 -f 0 -c '${ZEUS_ENV}' -e -t 'zeus:${ZEUS_ENV//\%/%%}'
+  }
+  function instant_prompt_zeus_env() {
+    prompt_zeus_env
+  }
+
   # User-defined prompt segments can be customized the same way as built-in segments.
   typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=3
   typeset -g POWERLEVEL9K_EXAMPLE_BACKGROUND=1
@@ -1804,7 +1815,7 @@
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
 
   # Instant prompt mode.
   #

@@ -140,6 +140,16 @@ read_env() {
   export $(xargs <$1)
 }
 
+# `git log` shows the last 15 commits by default; a later -n/-<num> overrides it
+git() {
+  if [[ $1 == log ]]; then
+    shift
+    command git log -15 "$@"
+  else
+    command git "$@"
+  fi
+}
+
 # iTerm2 integration only when actually in iTerm2 (Ghostty injects its own)
 [[ $TERM_PROGRAM == iTerm.app && -e ~/.iterm2_shell_integration.zsh ]] && source ~/.iterm2_shell_integration.zsh
 
