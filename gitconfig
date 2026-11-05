@@ -6,7 +6,7 @@
 [alias]
 	co = checkout
 	ss = status -sb
-	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5
+	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -15
 [push]
 	default = current
 [color]
@@ -20,3 +20,9 @@
 
 [includeIf "gitdir:~/projects/sapiens/"]
     path = ~/.gitconfig-sapiens
+[format]
+	pretty = oneline
+[log]
+	abbrevCommit = true
+[pager]
+	log = false

@@ -30,3 +30,7 @@ install_manifest.txt
 notedump.txt
 
 .idea
+
+.DS_Store
+
+**/.claude/settings.local.json
